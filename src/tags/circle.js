@@ -14,7 +14,13 @@ export default function (node, stroke, fill, point) {
         0, tau
     );
     ctx.closePath();
-    if (stroke) ctx.stroke();
+    if (stroke) {
+      const dash = attrs.get('stroke-dasharray');
+      if (dash) {
+        ctx.setLineDash(dash.split(','));
+      }
+      ctx.stroke();
+    }
     if (fill) ctx.fill();
     if (point && ctx.isPointInPath(point.x, point.y)) point.nodes.push(node);
 }

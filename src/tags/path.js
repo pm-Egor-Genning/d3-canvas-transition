@@ -15,7 +15,13 @@ export default function (node, stroke, fill, point) {
         } else if (window.Path2D) {
             var Path2D = window.Path2D,
                 p = new Path2D(multiply(path, node.factor));
-            if (stroke) ctx.stroke(p);
+            if (stroke) {
+                const dash = node.attrs.get('stroke-dasharray');
+                if (dash) {
+                  ctx.setLineDash(dash.split(','));
+                }
+              ctx.stroke(p);
+            }
             if (fill) ctx.fill(p);
             if (point && ctx.isPointInPath(p, point.x, point.y))
                 point.nodes.push(node);
