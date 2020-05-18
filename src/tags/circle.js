@@ -10,7 +10,7 @@ export default function(node, stroke, fill, point) {
   const x = attrs.get('cx');
   const y = attrs.get('cy');
   const radius = attrs.get('r');
-  const isSelection = attrs.get('isSelection');
+  const isSelection = !!attrs.get('isSelection');
   ctx.moveTo(isSelection ? x + radius : x, y);
   ctx.arc(
     f * (x || 0),
