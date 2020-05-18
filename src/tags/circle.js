@@ -11,8 +11,8 @@ export default function(node, stroke, fill, point) {
     f * (attrs.get('cx') || 0),
     f * (attrs.get('cy') || 0),
     f * (attrs.get('r') || 0),
-    attrs.get('startAngle') || 0,
-    (attrs.get('endAngle') || tau) * Math.PI,
+    (attrs.get('start-angle') || 0) * Math.PI,
+    (attrs.get('end-angle') || tau) * Math.PI,
     attrs.get('anticlockwise') || false
   );
   ctx.closePath();
