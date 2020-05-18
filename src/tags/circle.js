@@ -9,11 +9,13 @@ export default function(node, stroke, fill, point) {
   ctx.beginPath();
   const x = attrs.get('cx');
   const y = attrs.get('cy');
-  ctx.moveTo(x, y);
+  const radius = attrs.get('r');
+  const isSelection = attrs.get('isSelection');
+  ctx.moveTo(isSelection ? x + radius : x, y);
   ctx.arc(
     f * (x || 0),
     f * (y || 0),
-    f * (attrs.get('r') || 0),
+    f * (radius || 0),
     (attrs.get('startAngle') || 0) * Math.PI,
     (attrs.get('endAngle') || tau) * Math.PI,
     attrs.get('anticlockwise') || false
