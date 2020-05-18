@@ -7,9 +7,12 @@ export default function(node, stroke, fill, point) {
     ctx = node.context,
     f = node.factor;
   ctx.beginPath();
+  const x = attrs.get('cx');
+  const y = attrs.get('cy');
+  ctx.moveTo(x, y);
   ctx.arc(
-    f * (attrs.get('cx') || 0),
-    f * (attrs.get('cy') || 0),
+    f * (x || 0),
+    f * (y || 0),
     f * (attrs.get('r') || 0),
     (attrs.get('start-angle') || 0) * Math.PI,
     (attrs.get('end-angle') || tau) * Math.PI,
